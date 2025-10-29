@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plataforma ONGs — MVP</title>
+  <meta name="description" content="MVP: Plataforma para ONGs — listar projetos, voluntariado, doações simuladas e painel administrativo." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="#home">ONGConnect</a>
+      <nav class="main-nav" role="navigation" aria-label="Menu principal">
+        <ul>
+          <li><a href="#home">Início</a></li>
+          <li><a href="#projects">Projetos</a></li>
+          <li><a href="#volunteer">Voluntariado</a></li>
+          <li><a href="#admin">Painel</a></li>
+        </ul>
+      </nav>
+      <button id="toggle-theme" aria-pressed="false" title="Alternar tema">Tema</button>
+    </div>
+  </header>
+
+  <main id="home" class="container" role="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Plataforma para ONGs — Demonstração</h1>
+      <p>Gerencie projetos, engaje voluntários e simule captação de recursos.</p>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-header">
+        <h2 id="projects-title">Projetos</h2>
+        <div class="project-controls">
+          <label for="filter-category">Categoria
+            <select id="filter-category" aria-label="Filtrar por categoria">
+              <option value="">Todas</option>
+            </select>
+          </label>
+          <label for="filter-status">Status
+            <select id="filter-status" aria-label="Filtrar por status">
+              <option value="">Todos</option>
+              <option value="active">Ativo</option>
+              <option value="completed">Concluído</option>
+            </select>
+          </label>
+          <button id="btn-new-project">Novo Projeto</button>
+        </div>
+      </div>
+
+      <ul id="project-list" class="project-list" aria-live="polite"></ul>
+    </section>
+
+    <section id="volunteer" aria-labelledby="volunteer-title">
+      <h2 id="volunteer-title">Voluntariado</h2>
+      <form id="volunteer-form" class="card" aria-describedby="volunteer-help">
+        <p id="volunteer-help">Inscreva-se como voluntário — informações serão salvas localmente (simulação).</p>
+        <label>Nome <input name="name" required /></label>
+        <label>E-mail <input name="email" type="email" required /></label>
+        <label>Interesse <input name="interest" placeholder="Ex: educação, saúde" /></label>
+        <button type="submit">Enviar inscrição</button>
+      </form>
+
+      <div id="volunteer-list-area">
+        <h3>Inscrições recentes</h3>
+        <ul id="volunteer-list"></ul>
+      </div>
+    </section>
+
+    <section id="donation" aria-labelledby="donation-title">
+      <h2 id="donation-title">Doações (simulado)</h2>
+      <p>Ao clicar em "Doar" um modal simulado fará o processo.</p>
+      <div id="donation-result" role="status" aria-live="polite"></div>
+    </section>
+
+    <aside aria-labelledby="impact-title" class="aside">
+      <h2 id="impact-title">Transparência & Impacto</h2>
+      <p>Relatórios, números e prestação de contas ajudam a ganhar confiança de apoiadores.</p>
+    </aside>
+  </main>
+
+  <section id="admin" class="container admin-section" aria-labelledby="admin-title">
+    <h2 id="admin-title">Painel Administrativo (simulado)</h2>
+    <div class="admin-grid">
+      <div class="card">
+        <h3>CRUD de Projetos</h3>
+        <form id="project-form" aria-label="Formulário de projeto">
+          <input type="hidden" name="id" />
+          <label>Título <input name="title" required /></label>
+          <label>Categoria <input name="category" required /></label>
+          <label>Resumo <textarea name="summary" rows="3"></textarea></label>
+          <label>Meta (R$) <input name="goal" type="number" min="0" /></label>
+          <label>Status
+            <select name="status">
+              <option value="active">Ativo</option>
+              <option value="completed">Concluído</option>
+            </select>
+          </label>
+          <div class="form-actions">
+            <button type="submit">Salvar</button>
+            <button type="button" id="project-form-reset">Limpar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Logs e ações</h3>
+        <div id="admin-log" class="admin-log" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <small>&copy; <span id="year"></span> ONGConnect — Plataforma acadêmica</small>
+      <nav aria-label="Rodapé">
+        <ul>
+          <li><a href="#privacy">Privacidade</a></li>
+          <li><a href="#terms">Termos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Modal placeholder (accessible) -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content" role="document">
+      <h3 id="modal-title"></h3>
+      <div id="modal-body"></div>
+      <div class="modal-actions">
+        <button id="modal-close">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
